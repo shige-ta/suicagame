@@ -1,0 +1,270 @@
+[gd_scene load_steps=24 format=3 uid="uid://ma78kqfw7f7"]
+
+[ext_resource type="PackedScene" uid="uid://bl0fa1266u1ui" path="res://src/Wall.tscn" id="1_oijm6"]
+[ext_resource type="Script" path="res://Main.gd" id="1_pv48b"]
+[ext_resource type="Texture2D" uid="uid://bw6yrn7kttc83" path="res://assets/images/bg.png" id="2_k5l3r"]
+[ext_resource type="Texture2D" uid="uid://crrw50tcejcky" path="res://assets/images/line.png" id="3_laf43"]
+[ext_resource type="Texture2D" uid="uid://c48cn2uhg6c6q" path="res://assets/images/fruits/nasu.png" id="4_4ngh3"]
+[ext_resource type="Texture2D" uid="uid://d3y5imof2uamq" path="res://assets/images/deadline.png" id="4_bkswg"]
+[ext_resource type="LabelSettings" uid="uid://b6l1ol3drb1s3" path="res://assets/fonts/font_m.tres" id="6_la6a2"]
+[ext_resource type="Texture2D" uid="uid://c4fu14yyetvcu" path="res://assets/images/fruits/xbox.png" id="7_qswyg"]
+[ext_resource type="Texture2D" uid="uid://ds4tmw6jdtiaf" path="res://assets/images/fruits/pudding.png" id="8_56qcn"]
+[ext_resource type="Texture2D" uid="uid://d24yf53gmerd8" path="res://assets/images/fruits/milk.png" id="9_knyi6"]
+[ext_resource type="Texture2D" uid="uid://csaq445l0f551" path="res://assets/images/fruits/5box.png" id="10_pgpkf"]
+[ext_resource type="Texture2D" uid="uid://7vlratr4u5gi" path="res://assets/images/fruits/nya.png" id="11_x0aan"]
+[ext_resource type="Texture2D" uid="uid://bd3wjjopf6pop" path="res://assets/images/fruits/tako.png" id="12_t62x5"]
+[ext_resource type="Texture2D" uid="uid://du2ycl3dlcl5t" path="res://assets/images/fruits/banana.png" id="13_wo8dq"]
+[ext_resource type="Texture2D" uid="uid://bb1ppxig5dnbj" path="res://assets/images/fruits/pocky.png" id="14_6i5f7"]
+[ext_resource type="Texture2D" uid="uid://d2tiahu7rfq4s" path="res://assets/images/fruits/radish.png" id="15_31kmj"]
+[ext_resource type="Texture2D" uid="uid://cf3cotmmlx2h4" path="res://assets/images/fruits/carrot.png" id="16_bo7ty"]
+[ext_resource type="Texture2D" uid="uid://c82fwdiphmxbb" path="res://assets/images/fruits/bullet.png" id="17_q82em"]
+[ext_resource type="LabelSettings" uid="uid://ci0gmxa12joer" path="res://assets/fonts/font_l.tres" id="19_jpi46"]
+[ext_resource type="Texture2D" uid="uid://bywtqxafaokb3" path="res://assets/images/gauge_under.png" id="20_topfu"]
+[ext_resource type="Texture2D" uid="uid://cr7svvm7e66kb" path="res://assets/images/gauge_progress.png" id="21_cfs7a"]
+[ext_resource type="AudioStream" uid="uid://cbnnom7y6vdps" path="res://assets/sound/bgm/bgm01_130.mp3" id="22_7yljx"]
+[ext_resource type="LabelSettings" uid="uid://hgpq80s0wk7j" path="res://assets/fonts/font_s.tres" id="22_b3ye2"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_pv48b")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(576, 218)
+scale = Vector2(1.8, 1.79167)
+texture = ExtResource("2_k5l3r")
+
+[node name="Line" type="Sprite2D" parent="."]
+position = Vector2(576, 128)
+texture = ExtResource("3_laf43")
+offset = Vector2(0, 256)
+
+[node name="DeadLine" type="Sprite2D" parent="."]
+position = Vector2(576, 136)
+scale = Vector2(0.75, 1)
+texture = ExtResource("4_bkswg")
+
+[node name="Marker" type="Node2D" parent="."]
+
+[node name="Left" type="Marker2D" parent="Marker"]
+position = Vector2(416, 128)
+
+[node name="Right" type="Marker2D" parent="Marker"]
+position = Vector2(736, 128)
+
+[node name="WallLayer" type="CanvasLayer" parent="."]
+
+[node name="Wall" parent="WallLayer" instance=ExtResource("1_oijm6")]
+position = Vector2(384, 64)
+scale = Vector2(0.08, 9.12)
+
+[node name="Wall3" parent="WallLayer" instance=ExtResource("1_oijm6")]
+position = Vector2(576, 640)
+scale = Vector2(3.08, 0.199999)
+
+[node name="Wall2" parent="WallLayer" instance=ExtResource("1_oijm6")]
+position = Vector2(768, 64)
+scale = Vector2(0.08, 9.12)
+
+[node name="FruitLayer" type="CanvasLayer" parent="."]
+
+[node name="ParticleLayer" type="CanvasLayer" parent="."]
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="NowFruit" type="Sprite2D" parent="UILayer"]
+visible = false
+texture = ExtResource("4_4ngh3")
+
+[node name="DbgLabel" type="Label" parent="UILayer"]
+visible = false
+offset_left = 40.0
+offset_top = 64.0
+offset_right = 230.0
+offset_bottom = 112.0
+text = "Debug Label"
+label_settings = ExtResource("6_la6a2")
+
+[node name="Evolution" type="Node2D" parent="UILayer"]
+position = Vector2(904, 32)
+
+[node name="Xbox" type="Sprite2D" parent="UILayer/Evolution"]
+position = Vector2(24, 24)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_qswyg")
+
+[node name="Pudding" type="Sprite2D" parent="UILayer/Evolution"]
+position = Vector2(24, 72)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_56qcn")
+
+[node name="Milk" type="Sprite2D" parent="UILayer/Evolution"]
+position = Vector2(24, 120)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("9_knyi6")
+
+[node name="5Box" type="Sprite2D" parent="UILayer/Evolution"]
+position = Vector2(24, 168)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("10_pgpkf")
+
+[node name="Nya" type="Sprite2D" parent="UILayer/Evolution"]
+position = Vector2(24, 216)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("11_x0aan")
+
+[node name="Tako" type="Sprite2D" parent="UILayer/Evolution"]
+position = Vector2(24, 264)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_t62x5")
+
+[node name="Nasu" type="Sprite2D" parent="UILayer/Evolution"]
+position = Vector2(24, 312)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_4ngh3")
+
+[node name="Banana" type="Sprite2D" parent="UILayer/Evolution"]
+position = Vector2(24, 360)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("13_wo8dq")
+
+[node name="Pocky" type="Sprite2D" parent="UILayer/Evolution"]
+position = Vector2(24, 408)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("14_6i5f7")
+
+[node name="Radish" type="Sprite2D" parent="UILayer/Evolution"]
+position = Vector2(24, 456)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("15_31kmj")
+
+[node name="Carrot" type="Sprite2D" parent="UILayer/Evolution"]
+position = Vector2(24, 504)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("16_bo7ty")
+
+[node name="Bullet" type="Sprite2D" parent="UILayer/Evolution"]
+position = Vector2(24, 552)
+texture = ExtResource("17_q82em")
+
+[node name="Label" type="Label" parent="UILayer/Evolution"]
+offset_left = 56.0
+offset_right = 96.0
+offset_bottom = 23.0
+text = "x 0
+x 0
+x 0
+x 0
+x 0
+x 0
+x 0
+x 0
+x 0
+x 0
+x 0
+x 0"
+label_settings = ExtResource("6_la6a2")
+
+[node name="Caption" type="Node2D" parent="UILayer"]
+visible = false
+
+[node name="Bg" type="ColorRect" parent="UILayer/Caption"]
+offset_top = 248.0
+offset_right = 1152.0
+offset_bottom = 384.0
+color = Color(0, 0, 0, 0.501961)
+
+[node name="Label" type="Label" parent="UILayer/Caption"]
+offset_left = 432.0
+offset_top = 248.0
+offset_right = 720.0
+offset_bottom = 340.0
+text = "GAME OVER"
+label_settings = ExtResource("19_jpi46")
+
+[node name="Label2" type="Label" parent="UILayer/Caption"]
+offset_left = 512.0
+offset_top = 328.0
+offset_right = 640.0
+offset_bottom = 376.0
+text = "R: Retry"
+label_settings = ExtResource("6_la6a2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="TextureProgressBar" parent="UILayer"]
+visible = false
+offset_right = 64.0
+offset_bottom = 64.0
+fill_mode = 4
+texture_under = ExtResource("20_topfu")
+texture_progress = ExtResource("21_cfs7a")
+
+[node name="Next" type="Node2D" parent="UILayer"]
+position = Vector2(40, 144)
+
+[node name="Label" type="Label" parent="UILayer/Next"]
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 80.0
+offset_bottom = 56.0
+text = "NEXT"
+label_settings = ExtResource("6_la6a2")
+
+[node name="Sprite2D" type="Sprite2D" parent="UILayer/Next"]
+position = Vector2(128, 32)
+
+[node name="ColorRect" type="ColorRect" parent="UILayer/Next"]
+offset_left = 8.0
+offset_top = -8.0
+offset_right = 192.0
+color = Color(1, 1, 0, 0.258824)
+
+[node name="ColorRect2" type="ColorRect" parent="UILayer/Next"]
+offset_left = 8.0
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 72.0
+color = Color(1, 1, 0, 0.258824)
+
+[node name="ColorRect3" type="ColorRect" parent="UILayer/Next"]
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 72.0
+color = Color(1, 1, 0, 0.258824)
+
+[node name="ColorRect4" type="ColorRect" parent="UILayer/Next"]
+offset_left = 184.0
+offset_right = 192.0
+offset_bottom = 64.0
+color = Color(1, 1, 0, 0.258824)
+
+[node name="Score" type="Label" parent="UILayer"]
+offset_left = 56.0
+offset_top = 80.0
+offset_right = 184.0
+offset_bottom = 128.0
+text = "SCORE: 0"
+label_settings = ExtResource("6_la6a2")
+metadata/_edit_use_anchors_ = true
+
+[node name="SubLabel" type="Label" parent="UILayer/Score"]
+visible = false
+layout_mode = 0
+offset_left = 232.0
+offset_top = 12.0
+offset_right = 292.0
+offset_bottom = 39.0
+text = "+9999"
+label_settings = ExtResource("22_b3ye2")
+
+[node name="HiScore" type="Label" parent="UILayer"]
+offset_left = 48.0
+offset_top = 576.0
+offset_right = 176.0
+offset_bottom = 624.0
+text = "HI-SCORE: 0"
+label_settings = ExtResource("6_la6a2")
+metadata/_edit_use_anchors_ = true
+
+[node name="Bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_7yljx")
+bus = &"BGM"

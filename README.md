@@ -1,1 +1,1 @@
-# suicagame
+# gd_suikagame
