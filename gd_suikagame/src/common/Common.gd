@@ -13,8 +13,8 @@ const TIMER_FRUIT_APPEAR = 1.0
 
 ### SEテーブル.
 var _snd_tbl = {
-	"drop": "res://assets/sound/se/drop.wav",
-	"merge": "res://assets/sound/se/merge.wav",
+	"drop": "res://assets/sound/se/drop2.wav",
+	"merge": "res://assets/sound/se/merge2.wav",
 }
 
 # -----------------------------------------------
@@ -22,18 +22,24 @@ var _snd_tbl = {
 # -----------------------------------------------
 ## フルーツテーブル.
 const FRUIT_TBL = {
-	Fruit.eFruit.BULLET: preload("res://src/fruit/FruitBullet.tscn"),
-	Fruit.eFruit.CARROT: preload("res://src/fruit/FruitCarrot.tscn"),
-	Fruit.eFruit.RADISH: preload("res://src/fruit/FruitRadish.tscn"),
-	Fruit.eFruit.POCKY: preload("res://src/fruit/FruitPocky.tscn"),
-	Fruit.eFruit.BANANA: preload("res://src/fruit/FruitBanana.tscn"),
-	Fruit.eFruit.NASU: preload("res://src/fruit/FruitNasu.tscn"),
-	Fruit.eFruit.TAKO: preload("res://src/fruit/FruitTako.tscn"),
-	Fruit.eFruit.NYA: preload("res://src/fruit/FruitNya.tscn"),
-	Fruit.eFruit.FIVE_BOX: preload("res://src/fruit/Fruit5Box.tscn"),
-	Fruit.eFruit.MILK: preload("res://src/fruit/FruitMilk.tscn"),
-	Fruit.eFruit.PUDDING: preload("res://src/fruit/FruitPudding.tscn"),
-	Fruit.eFruit.XBOX: preload("res://src/fruit/FruitXBox.tscn"),	
+#	Fruit.eFruit.BULLET: preload("res://src/fruit/FruitBullet.tscn"),
+#	Fruit.eFruit.CARROT: preload("res://src/fruit/FruitCarrot.tscn"),
+#	Fruit.eFruit.RADISH: preload("res://src/fruit/FruitRadish.tscn"),
+#	Fruit.eFruit.POCKY: preload("res://src/fruit/FruitPocky.tscn"),
+#	Fruit.eFruit.BANANA: preload("res://src/fruit/FruitBanana.tscn"),
+#	Fruit.eFruit.NASU: preload("res://src/fruit/FruitNasu.tscn"),
+#	Fruit.eFruit.TAKO: preload("res://src/fruit/FruitTako.tscn"),
+#	Fruit.eFruit.NYA: preload("res://src/fruit/FruitNya.tscn"),
+#	Fruit.eFruit.FIVE_BOX: preload("res://src/fruit/Fruit5Box.tscn"),
+#	Fruit.eFruit.MILK: preload("res://src/fruit/FruitMilk.tscn"),
+#	Fruit.eFruit.PUDDING: preload("res://src/fruit/FruitPudding.tscn"),
+#	Fruit.eFruit.XBOX: preload("res://src/fruit/FruitXBox.tscn"),	
+	Fruit.eFruit.c1: preload("res://src/fruit/c1.tscn"),	
+	Fruit.eFruit.c2: preload("res://src/fruit/c2.tscn"),	
+	Fruit.eFruit.c3: preload("res://src/fruit/c3.tscn"),	
+	Fruit.eFruit.c4: preload("res://src/fruit/c4.tscn"),	
+	Fruit.eFruit.small_hiyoko: preload("res://src/fruit/small_hiyoko.tscn"),	
+	Fruit.eFruit.hiyoko: preload("res://src/fruit/hiyoko.tscn"),	
 }
 
 # -----------------------------------------------

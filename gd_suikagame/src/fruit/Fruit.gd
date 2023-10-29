@@ -16,50 +16,68 @@ const TIMER_GAMEOVER = 3.0 * 2
 ## フルーツの種類.
 ## このIDの並び＝進化テーブル
 enum eFruit {
-	BULLET, # 0:敵弾.
-	CARROT, # 1:人参.
-	RADISH, # 2:大根.
-	POCKY, # 3:ポッキー.
-	BANANA, # 4:バナナ.
-	NASU, # 5:なす.
-	TAKO, # 6:たこ焼き.
-	NYA, # 7:えぐぜりにゃ〜.
-	FIVE_BOX, # 8:5箱.
-	MILK, # 9:牛乳.
-	PUDDING, # 10:プリン.
-	XBOX, # 11:XBox.
+#	BULLET, # 0:敵弾.
+#	CARROT, # 1:人参.
+#	RADISH, # 2:大根.
+#	POCKY, # 3:ポッキー.
+#	BANANA, # 4:バナナ.
+#	NASU, # 5:なす.
+#	TAKO, # 6:たこ焼き.
+#	NYA, # 7:えぐぜりにゃ〜.
+#	FIVE_BOX, # 8:5箱.
+#	MILK, # 9:牛乳.
+#	PUDDING, # 10:プリン.
+#	XBOX, # 11:XBox.
+	c1,
+	c2,
+	c3,
+	c4,
+	hiyoko,
+	small_hiyoko,
 }
 
 ## 名前テーブル.
 const NAMES = {
-	eFruit.BULLET: "のどあめ", # 0:敵弾.
-	eFruit.CARROT: "にんじん", # 1:人参.
-	eFruit.RADISH: "大根", # 2:大根.
-	eFruit.POCKY: "ポッキー", # 3:ポッキー.
-	eFruit.BANANA: "バナナ", # 4:バナナ.
-	eFruit.NASU: "なす", # 5:なす.
-	eFruit.TAKO: "たこ焼き", # 6:たこ焼き.
-	eFruit.NYA: "にゃ〜", # 7:えぐぜりにゃ〜.
-	eFruit.FIVE_BOX: "5箱", # 8:5箱.
-	eFruit.MILK: "牛乳", # 9:牛乳.
-	eFruit.PUDDING: "プリン", # 10:プリン.
-	eFruit.XBOX: "XBox", # 11:XBox.
+#	eFruit.BULLET: "のどあめ", # 0:敵弾.
+#	eFruit.CARROT: "にんじん", # 1:人参.
+#	eFruit.RADISH: "大根", # 2:大根.
+#	eFruit.POCKY: "ポッキー", # 3:ポッキー.
+#	eFruit.BANANA: "バナナ", # 4:バナナ.
+#	eFruit.NASU: "なす", # 5:なす.
+#	eFruit.TAKO: "たこ焼き", # 6:たこ焼き.
+#	eFruit.NYA: "にゃ〜", # 7:えぐぜりにゃ〜.
+#	eFruit.FIVE_BOX: "5箱", # 8:5箱.
+#	eFruit.MILK: "牛乳", # 9:牛乳.
+#	eFruit.PUDDING: "プリン", # 10:プリン.
+#	eFruit.XBOX: "XBox", # 11:XBox.
+	eFruit.c1: "c1",
+	eFruit.c2: "c2",
+	eFruit.c3: "c3",
+	eFruit.c4: "c4",
+	eFruit.small_hiyoko: "small_hiyoko",
+	eFruit.hiyoko: "hiyoko",
 }
 
 ## テクスチャテーブル.
 const TEXTURES = {
-	eFruit.BULLET: "res://assets/images/fruits/bullet.png", # 0:敵弾.
-	eFruit.CARROT: "res://assets/images/fruits/carrot.png", # 1:人参.
-	eFruit.RADISH: "res://assets/images/fruits/radish.png", # 2:大根.
-	eFruit.POCKY: "res://assets/images/fruits/pocky.png", # 3:ポッキー.
-	eFruit.BANANA: "res://assets/images/fruits/banana.png", # 4:バナナ.
-	eFruit.NASU: "res://assets/images/fruits/nasu.png", # 5:なす.
-	eFruit.TAKO: "res://assets/images/fruits/tako.png", # 6:たこ焼き.
-	eFruit.NYA: "res://assets/images/fruits/nya.png", # 7:えぐぜりにゃ〜.
-	eFruit.FIVE_BOX: "res://assets/images/fruits/5box.png", # 8:5箱.
-	eFruit.MILK: "res://assets/images/fruits/milk.png", # 9:牛乳.
-	eFruit.PUDDING: "res://assets/images/fruits/pudding.png", # 10:プリン.
-	eFruit.XBOX: "res://assets/images/fruits/xbox.png", # 11:XBox.
+#	eFruit.BULLET: "res://assets/images/fruits/bullet.png", # 0:敵弾.
+#	eFruit.CARROT: "res://assets/images/fruits/carrot.png", # 1:人参.
+#	eFruit.RADISH: "res://assets/images/fruits/radish.png", # 2:大根.
+#	eFruit.POCKY: "res://assets/images/fruits/pocky.png", # 3:ポッキー.
+#	eFruit.BANANA: "res://assets/images/fruits/banana.png", # 4:バナナ.
+#	eFruit.NASU: "res://assets/images/fruits/nasu.png", # 5:なす.
+#	eFruit.TAKO: "res://assets/images/fruits/tako.png", # 6:たこ焼き.
+#	eFruit.NYA: "res://assets/images/fruits/nya.png", # 7:えぐぜりにゃ〜.
+#	eFruit.FIVE_BOX: "res://assets/images/fruits/5box.png", # 8:5箱.
+#	eFruit.MILK: "res://assets/images/fruits/milk.png", # 9:牛乳.
+#	eFruit.PUDDING: "res://assets/images/fruits/pudding.png", # 10:プリン.
+#	eFruit.XBOX: "res://assets/images/fruits/xbox.png", # 11:XBox.
+	eFruit.c1: "res://assets/images/fruits/c1.png",
+	eFruit.c2: "res://assets/images/fruits/c2.png",
+	eFruit.c3: "res://assets/images/fruits/c3.png",
+	eFruit.c4: "res://assets/images/fruits/c4.png",
+	eFruit.small_hiyoko: "res://assets/images/fruits/small_hiyoko.png",
+	eFruit.hiyoko: "res://assets/images/fruits/hiyoko.png",
 }
 
 # -----------------------------------------------
@@ -176,7 +194,7 @@ func _on_body_entered(body: Node) -> void:
 		return # 一致していないので何も起こらない.
 	
 	# IDが一致していたら合成可能.
-	if id < eFruit.XBOX:
+	if id < eFruit.small_hiyoko:
 		# とりあえず中間地点にフルーツを生成する.
 		var pos = (position + other.position)/2
 		# このシグナル内で生成する場合は

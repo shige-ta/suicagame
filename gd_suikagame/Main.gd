@@ -11,11 +11,17 @@ const DROP_POS_Y = 120.0
 
 ## NEXT抽選用テーブル.
 const NEXT_TBL = [
-	Fruit.eFruit.BULLET, # 0:敵弾.
-	Fruit.eFruit.CARROT, # 1:人参.
-	Fruit.eFruit.RADISH, # 2:大根.
-	Fruit.eFruit.POCKY, # 3:ポッキー.
-	Fruit.eFruit.BANANA, # 4:バナナ.
+#	Fruit.eFruit.BULLET, # 0:敵弾.
+#	Fruit.eFruit.CARROT, # 1:人参.
+#	Fruit.eFruit.RADISH, # 2:大根.
+#	Fruit.eFruit.POCKY, # 3:ポッキー.
+#	Fruit.eFruit.BANANA, # 4:バナナ.
+	Fruit.eFruit.c1,
+	Fruit.eFruit.c2,
+	Fruit.eFruit.c3,
+	Fruit.eFruit.c4,
+	Fruit.eFruit.small_hiyoko,
+	Fruit.eFruit.hiyoko,
 ]
 
 ## 状態.
@@ -60,9 +66,9 @@ enum eState {
 ## 状態.
 var _state := eState.INIT
 ## 現在のフルーツ.
-var _now_fruit = Fruit.eFruit.BULLET
+var _now_fruit = Fruit.eFruit.c1
 ## 次のフルーツ.
-var _next_fruit = Fruit.eFruit.BULLET
+var _next_fruit = Fruit.eFruit.c1
 ## 落下させたフルーツ.
 var _fruit:Fruit = null
 ## BGMの状態.
@@ -96,18 +102,24 @@ func _ready() -> void:
 ## 進化画像のセットアップ.
 func _setup_evolution() -> void:
 	# 進化画像.
-	_evolution_sprs[Fruit.eFruit.BULLET] = $UILayer/Evolution/Bullet
-	_evolution_sprs[Fruit.eFruit.CARROT] = $UILayer/Evolution/Carrot
-	_evolution_sprs[Fruit.eFruit.RADISH] = $UILayer/Evolution/Radish
-	_evolution_sprs[Fruit.eFruit.POCKY] = $UILayer/Evolution/Pocky
-	_evolution_sprs[Fruit.eFruit.BANANA] = $UILayer/Evolution/Banana
-	_evolution_sprs[Fruit.eFruit.NASU] = $UILayer/Evolution/Nasu
-	_evolution_sprs[Fruit.eFruit.TAKO] = $UILayer/Evolution/Tako
-	_evolution_sprs[Fruit.eFruit.NYA] = $UILayer/Evolution/Nya
-	_evolution_sprs[Fruit.eFruit.FIVE_BOX] = get_node("UILayer/Evolution/5Box")
-	_evolution_sprs[Fruit.eFruit.MILK] = $UILayer/Evolution/Milk
-	_evolution_sprs[Fruit.eFruit.PUDDING] = $UILayer/Evolution/Pudding
-	_evolution_sprs[Fruit.eFruit.XBOX] = $UILayer/Evolution/Xbox
+#	_evolution_sprs[Fruit.eFruit.BULLET] = $UILayer/Evolution/Bullet
+#	_evolution_sprs[Fruit.eFruit.CARROT] = $UILayer/Evolution/Carrot
+#	_evolution_sprs[Fruit.eFruit.RADISH] = $UILayer/Evolution/Radish
+#	_evolution_sprs[Fruit.eFruit.POCKY] = $UILayer/Evolution/Pocky
+#	_evolution_sprs[Fruit.eFruit.BANANA] = $UILayer/Evolution/Banana
+#	_evolution_sprs[Fruit.eFruit.NASU] = $UILayer/Evolution/Nasu
+#	_evolution_sprs[Fruit.eFruit.TAKO] = $UILayer/Evolution/Tako
+#	_evolution_sprs[Fruit.eFruit.NYA] = $UILayer/Evolution/Nya
+#	_evolution_sprs[Fruit.eFruit.FIVE_BOX] = get_node("UILayer/Evolution/5Box")
+#	_evolution_sprs[Fruit.eFruit.MILK] = $UILayer/Evolution/Milk
+#	_evolution_sprs[Fruit.eFruit.PUDDING] = $UILayer/Evolution/Pudding
+#	_evolution_sprs[Fruit.eFruit.XBOX] = $UILayer/Evolution/Xbox
+	_evolution_sprs[Fruit.eFruit.c1] = $UILayer/Evolution/c1
+	_evolution_sprs[Fruit.eFruit.c2] = $UILayer/Evolution/c2
+	_evolution_sprs[Fruit.eFruit.c3] = $UILayer/Evolution/c3
+	_evolution_sprs[Fruit.eFruit.c4] = $UILayer/Evolution/c4
+	_evolution_sprs[Fruit.eFruit.small_hiyoko] = $UILayer/Evolution/small_hiyoko
+	_evolution_sprs[Fruit.eFruit.hiyoko] = $UILayer/Evolution/hiyoko
 	# 基準スケール値を保持.
 	for id in _evolution_sprs.keys():
 		_evolution_scales[id] = _evolution_sprs[id].scale
@@ -295,7 +307,7 @@ func _update_ui(delta:float) -> void:
 	
 	# フルーツの生成数をカウントする.
 	var tbl = {}
-	var max_id = Fruit.eFruit.BULLET
+	var max_id = Fruit.eFruit.hiyoko
 	for obj in _fruit_layer.get_children():
 		var fruit = obj as Fruit
 		var id = fruit.id
@@ -308,25 +320,25 @@ func _update_ui(delta:float) -> void:
 			max_id = id
 	
 	# BGMの更新.
-	if max_id >= Fruit.eFruit.XBOX:
+	if max_id >= Fruit.eFruit.hiyoko:
 		if _bgm_id < 4:
 			# XBOXが出たらBGM変更.
 			_bgm.stream = load("res://assets/sound/bgm/bgm05_140.mp3")
 			_bgm.play()
 			_bgm_id = 5
-	elif max_id >= Fruit.eFruit.PUDDING:
+	elif max_id >= Fruit.eFruit.small_hiyoko:
 		if _bgm_id < 3:
 			# プリンが出たらBGM変更.
 			_bgm.stream = load("res://assets/sound/bgm/bgm04_110.mp3")
 			_bgm.play()
 			_bgm_id = 3 
-	elif max_id >= Fruit.eFruit.MILK:
+	elif max_id >= Fruit.eFruit.c4:
 		if _bgm_id < 2:
 			# 牛乳が出たらBGM変更.
 			_bgm.stream = load("res://assets/sound/bgm/bgm03_140.mp3")
 			_bgm.play()
 			_bgm_id = 2
-	elif max_id >= Fruit.eFruit.FIVE_BOX:
+	elif max_id >= Fruit.eFruit.c3:
 		if _bgm_id < 1:
 			# 5箱が出たらBGM変更.
 			_bgm.stream = load("res://assets/sound/bgm/bgm02_140.mp3")
