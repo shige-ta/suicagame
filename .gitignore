@@ -23,6 +23,6 @@ mono_crash.*.json
 *.apk
 *.tmp
 *.import
-gd_suikagame\android
-gd_suikagame\addons
-x64\
+x64/
+gd_suikagame/addons/
+gd_suikagame/android/

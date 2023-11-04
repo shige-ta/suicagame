@@ -62,6 +62,8 @@ func _on_show_pressed():
 func on_user_earned_reward(rewarded_item : RewardedItem):
 	print("on_user_earned_reward, rewarded_item: rewarded", rewarded_item.amount, rewarded_item.type)
 
+func _on_video_completed():
+	$Button.disabled = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # func _process(delta):
 # 	pass
