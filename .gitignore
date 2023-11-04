@@ -18,3 +18,11 @@ mono_crash.*.json
 
 # for macOS
 .DS_Store
+# Godot 4+ specific ignores
+.godot/
+*.apk
+*.tmp
+*.import
+gd_suikagame\android
+gd_suikagame\addons
+x64\

@@ -2,27 +2,27 @@
 
 [ext_resource type="PackedScene" uid="uid://bl0fa1266u1ui" path="res://src/Wall.tscn" id="1_oijm6"]
 [ext_resource type="Script" path="res://Main.gd" id="1_pv48b"]
-[ext_resource type="Texture2D" uid="uid://dckjt0vxvt5kp" path="res://assets/images/back.png" id="2_7hbuq"]
-[ext_resource type="Texture2D" uid="uid://crrw50tcejcky" path="res://assets/images/line.png" id="3_laf43"]
-[ext_resource type="Texture2D" uid="uid://c48cn2uhg6c6q" path="res://assets/images/fruits/nasu.png" id="4_4ngh3"]
-[ext_resource type="Texture2D" uid="uid://d3y5imof2uamq" path="res://assets/images/deadline.png" id="4_bkswg"]
+[ext_resource type="Texture2D" uid="uid://1n5c7a2v5km5" path="res://assets/images/back.png" id="2_7hbuq"]
+[ext_resource type="Texture2D" uid="uid://yubsu8hl0aqh" path="res://assets/images/line.png" id="3_laf43"]
+[ext_resource type="Texture2D" uid="uid://db6we11ek8ylx" path="res://assets/images/fruits/nasu.png" id="4_4ngh3"]
+[ext_resource type="Texture2D" uid="uid://bgv85p4kwa37k" path="res://assets/images/deadline.png" id="4_bkswg"]
 [ext_resource type="LabelSettings" uid="uid://b6l1ol3drb1s3" path="res://assets/fonts/font_m.tres" id="6_la6a2"]
-[ext_resource type="Texture2D" uid="uid://du2ycl3dlcl5t" path="res://assets/images/fruits/banana.png" id="13_wo8dq"]
-[ext_resource type="Texture2D" uid="uid://bb1ppxig5dnbj" path="res://assets/images/fruits/pocky.png" id="14_6i5f7"]
-[ext_resource type="Texture2D" uid="uid://d2tiahu7rfq4s" path="res://assets/images/fruits/radish.png" id="15_31kmj"]
-[ext_resource type="Texture2D" uid="uid://cf3cotmmlx2h4" path="res://assets/images/fruits/carrot.png" id="16_bo7ty"]
-[ext_resource type="Texture2D" uid="uid://c82fwdiphmxbb" path="res://assets/images/fruits/bullet.png" id="17_q82em"]
-[ext_resource type="Texture2D" uid="uid://bxjf31m4w5pty" path="res://assets/images/fruits/c1.png" id="19_2nck0"]
+[ext_resource type="Texture2D" uid="uid://4n1m8by72cwh" path="res://assets/images/fruits/banana.png" id="13_wo8dq"]
+[ext_resource type="Texture2D" uid="uid://bbankdjvatvne" path="res://assets/images/fruits/pocky.png" id="14_6i5f7"]
+[ext_resource type="Texture2D" uid="uid://doknbwdyh6vix" path="res://assets/images/fruits/radish.png" id="15_31kmj"]
+[ext_resource type="Texture2D" uid="uid://10vm48suiit1" path="res://assets/images/fruits/carrot.png" id="16_bo7ty"]
+[ext_resource type="Texture2D" uid="uid://8p7uep0eq25n" path="res://assets/images/fruits/bullet.png" id="17_q82em"]
+[ext_resource type="Texture2D" uid="uid://bvxwsedekwj3n" path="res://assets/images/fruits/c1.png" id="19_2nck0"]
 [ext_resource type="LabelSettings" uid="uid://ci0gmxa12joer" path="res://assets/fonts/font_l.tres" id="19_jpi46"]
-[ext_resource type="Texture2D" uid="uid://ds5pmoxfy5gui" path="res://assets/images/fruits/c2.png" id="20_mgwxh"]
-[ext_resource type="Texture2D" uid="uid://bywtqxafaokb3" path="res://assets/images/gauge_under.png" id="20_topfu"]
-[ext_resource type="Texture2D" uid="uid://cr7svvm7e66kb" path="res://assets/images/gauge_progress.png" id="21_cfs7a"]
-[ext_resource type="Texture2D" uid="uid://bkt5jibsh50od" path="res://assets/images/fruits/c3.png" id="21_hmlrq"]
-[ext_resource type="AudioStream" uid="uid://cbnnom7y6vdps" path="res://assets/sound/bgm/bgm01_130.mp3" id="22_7yljx"]
+[ext_resource type="Texture2D" uid="uid://i1a5olew6p2s" path="res://assets/images/fruits/c2.png" id="20_mgwxh"]
+[ext_resource type="Texture2D" uid="uid://eseldrdv5mc3" path="res://assets/images/gauge_under.png" id="20_topfu"]
+[ext_resource type="Texture2D" uid="uid://1ng8l5na42f2" path="res://assets/images/gauge_progress.png" id="21_cfs7a"]
+[ext_resource type="Texture2D" uid="uid://b7kjd6w6grke5" path="res://assets/images/fruits/c3.png" id="21_hmlrq"]
+[ext_resource type="AudioStream" uid="uid://cg8lvc3psl6wr" path="res://assets/sound/bgm/bgm01_130.mp3" id="22_7yljx"]
 [ext_resource type="LabelSettings" uid="uid://hgpq80s0wk7j" path="res://assets/fonts/font_s.tres" id="22_b3ye2"]
-[ext_resource type="Texture2D" uid="uid://b6looiuslxvd0" path="res://assets/images/fruits/c4.png" id="22_cvy71"]
-[ext_resource type="Texture2D" uid="uid://bvhnxsvar3gve" path="res://assets/images/fruits/hiyoko.png" id="23_crh7h"]
-[ext_resource type="Texture2D" uid="uid://lteydpe6t36l" path="res://assets/images/fruits/small_hiyoko.png" id="24_vj64h"]
+[ext_resource type="Texture2D" uid="uid://c7n7s78ibibel" path="res://assets/images/fruits/c4.png" id="22_cvy71"]
+[ext_resource type="Texture2D" uid="uid://dgu2ls50sh680" path="res://assets/images/fruits/hiyoko.png" id="23_crh7h"]
+[ext_resource type="Texture2D" uid="uid://dxi6uof8t6kno" path="res://assets/images/fruits/small_hiyoko.png" id="24_vj64h"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pv48b")
@@ -300,3 +300,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Bgm" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_7yljx")
 bus = &"BGM"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 885.0
+offset_top = 543.0
+offset_right = 1092.0
+offset_bottom = 614.0
+text = "RESET"

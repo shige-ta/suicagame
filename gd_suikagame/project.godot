@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="gd_suikagame"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -27,6 +27,10 @@ window/stretch/mode="canvas_items"
 [editor]
 
 movie_writer/movie_file="../movie.avi"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/admob/plugin.cfg")
 
 [input]
 
@@ -44,3 +48,5 @@ reset={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

@@ -78,12 +78,15 @@ var _evolution_sprs = {}
 ## 進化の輪のスケール.
 var _evolution_scales = {}
 
+
+
 # -----------------------------------------------
 # private function.
 # -----------------------------------------------
 ## 開始.
 func _ready() -> void:
-	# レイヤーテーブル.
+	if not $Button.button_down.is_connected(_on_button_button_down):
+		$Button.button_down.connect(_on_button_button_down)	# レイヤーテーブル.
 	var layers = {
 		"wall": _wall_layer,
 		"fruit": _fruit_layer,
@@ -92,12 +95,11 @@ func _ready() -> void:
 	}
 	# セットアップ.
 	Common.setup(layers)
-
-	# 進化画像のセットアップ.
 	_setup_evolution()
-	
 	# BGM再生.
 	_bgm.play()
+
+
 
 ## 進化画像のセットアップ.
 func _setup_evolution() -> void:
@@ -140,6 +142,11 @@ func _lot_fruit() -> void:
 	_ui_now_fruit.texture = Fruit.get_fruit_tex(_now_fruit)	
 	_ui_now_fruit.scale = Common.get_fruit_scale(_now_fruit)
 	_ui_now_fruit.modulate.a = 0.5
+
+var last_input_event : InputEvent = null
+
+func _input(event):
+	last_input_event = event
 
 ## 更新.
 func _process(delta: float) -> void:
@@ -220,8 +227,7 @@ func _update_drop_wait(delta:float) -> void:
 
 ## 更新 > ゲームオーバー.
 func _update_game_over() -> void:
-	pass
-
+	pass	
 ## 更新 > カーソル.
 func _update_cursor() -> void:
 	# カーソル位置の計算.
@@ -394,10 +400,26 @@ func _count_score_particle() -> int:
 			ret += 1
 	return ret
 
-## 更新 > デバッグ.
-func _update_debug() -> void:
+
+var last_tap_time : float = 0.0
+const DOUBLE_TAP_THRESHOLD = 0.5  # ダブルタップとして認識する最大の時間間隔（秒）
+
+func _update_debug():
 	if Input.is_action_just_pressed("reset"):
 		# リセット.
 		# 物理を有効に戻す.
 		PhysicsServer2D.set_active(true)
-		get_tree().change_scene_to_file("res://Main.tscn")
+		get_tree().change_scene_to_file("res://menu.tscn")
+
+
+## 更新 > デバッグ.
+#func _update_debug() -> void:
+#	if Input.is_action_just_pressed("reset"):
+#		# リセット.
+#		# 物理を有効に戻す.
+#		PhysicsServer2D.set_active(true)
+#		get_tree().change_scene_to_file("res://Main.tscn")
+
+
+func _on_button_button_down():
+	get_tree().change_scene_to_file("res://menu.tscn")
