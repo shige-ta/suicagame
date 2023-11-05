@@ -64,7 +64,6 @@ func on_rewarded_ad_loaded(rewarded_ad : RewardedAd) -> void:
 
 	self.rewarded_ad = rewarded_ad
 	_on_show_pressed()
-	$Button.disabled = false
 
 func _on_show_pressed():
 	if rewarded_ad:
@@ -72,9 +71,10 @@ func _on_show_pressed():
 
 func on_user_earned_reward(rewarded_item : RewardedItem):
 	print("on_user_earned_reward, rewarded_item: rewarded", rewarded_item.amount, rewarded_item.type)
+	$Button.disabled = false
 
 func _on_video_completed():
-	$Button.disabled = false
+	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # func _process(delta):
 # 	pass
@@ -120,8 +120,10 @@ var time_since_last_ad = 0.0
 
 
 func _process(delta):
+	
 	time_since_last_ad += delta
 	
 	if time_since_last_ad >= 5.0:
+		$Button.disabled = true
 		_on_load_interstitial_pressed()
 		time_since_last_ad = 0.0
