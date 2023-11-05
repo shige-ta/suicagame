@@ -9,6 +9,7 @@ extends Node2D
 ## フルーツ落下の高さ.
 const DROP_POS_Y = 120.0
 
+
 ## NEXT抽選用テーブル.
 const NEXT_TBL = [
 #	Fruit.eFruit.BULLET, # 0:敵弾.
