@@ -32,8 +32,8 @@ enum eFruit {
 	c2,
 	c3,
 	c4,
-	hiyoko,
 	small_hiyoko,
+	hiyoko,
 }
 
 ## 名前テーブル.
