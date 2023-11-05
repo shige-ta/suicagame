@@ -6,6 +6,15 @@ var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
 var rewarded_ad_load_callback := RewardedAdLoadCallback.new()
 var full_screen_content_callback := FullScreenContentCallback.new()
 
+func popup_show() -> void:
+	# ポップアップを表示する
+	self.visible = true
+	# ゲームを一時停止する
+	get_tree().paused = true
+	# Labelノードのテキストを設定する
+	$Label.text = "test"
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	on_user_earned_reward_listener.on_user_earned_reward = on_user_earned_reward
@@ -29,7 +38,9 @@ func _ready():
 		$Button.button_down.connect(_on_button_button_down)
 		$Button.disabled = true
 	_on_load_interstitial_pressed()
-
+	$Window.hide()
+	$HTTPRequest.request("https://google.com")
+	$HTTPRequest.connect("request_completed", Callable(self, "_on_request_completed"))
 
 func _on_load_interstitial_pressed() -> void:
 	var unit_id : String
@@ -53,7 +64,6 @@ func on_rewarded_ad_loaded(rewarded_ad : RewardedAd) -> void:
 
 	self.rewarded_ad = rewarded_ad
 	_on_show_pressed()
-	$Button.disabled = false  # ボタンを有効にします
 
 func _on_show_pressed():
 	if rewarded_ad:
@@ -78,5 +88,31 @@ func destroy():
 func _on_button_button_down():
 	get_tree().change_scene_to_file("res://Main.tscn")
 
+
+func show_popup():
+	$Window.title = "Network Error"
+	$Window.size = Vector2(500, 400)
+	$Window.position = Vector2(100, 100)
+	# WindowDialogにLabelノードを追加する
+	var label = Label.new()
+	label.text = """No network connection. 
+	Please connect to the network and restart the app.
 	
+	
+	ネットが接続していないので
+	接続してアプリを再起動してください
+	"""
+	$Window.add_child(label)
+	# ポップアップを表示する
+	$Window.popup()
+	
+func _on_request_completed(result, response_code, headers, body):
+	if response_code == 200:
+		# ポップアップを表示する
+		show_popup()
+		#$Button.disabled = false
+		# リクエストが成功した場合、ボタンを有効化する
+		# $Button.disabled = false
+		# TODO ポップアップでネットに接続してゲームを再起動してください。
+
 	
