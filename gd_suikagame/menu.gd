@@ -64,6 +64,7 @@ func on_rewarded_ad_loaded(rewarded_ad : RewardedAd) -> void:
 
 	self.rewarded_ad = rewarded_ad
 	_on_show_pressed()
+	$Button.disabled = false
 
 func _on_show_pressed():
 	if rewarded_ad:
@@ -107,7 +108,7 @@ func show_popup():
 	$Window.popup()
 	
 func _on_request_completed(result, response_code, headers, body):
-	if response_code == 200:
+	if response_code != 200:
 		# ポップアップを表示する
 		show_popup()
 		#$Button.disabled = false
