@@ -116,4 +116,12 @@ func _on_request_completed(result, response_code, headers, body):
 		# $Button.disabled = false
 		# TODO ポップアップでネットに接続してゲームを再起動してください。
 
+var time_since_last_ad = 0.0
+
+
+func _process(delta):
+	time_since_last_ad += delta
 	
+	if time_since_last_ad >= 5.0:
+		_on_load_interstitial_pressed()
+		time_since_last_ad = 0.0
