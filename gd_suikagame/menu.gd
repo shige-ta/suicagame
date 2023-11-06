@@ -59,7 +59,8 @@ func _on_load_interstitial_pressed() -> void:
 		unit_id = "ca-app-pub-3940256099942544/5224354917"
 	elif OS.get_name() == "iOS":
 		unit_id = "ca-app-pub-3940256099942544/1712485313"
-
+	else:
+		$Button.disabled = false
 	RewardedAdLoader.new().load(unit_id, AdRequest.new(), rewarded_ad_load_callback)
 func on_rewarded_ad_failed_to_load(adError : LoadAdError) -> void:
 	print(adError.message)

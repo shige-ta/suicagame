@@ -410,7 +410,6 @@ func _update_debug():
 		# リセット.
 		# 物理を有効に戻す.
 		PhysicsServer2D.set_active(true)
-		get_tree().change_scene_to_file("res://menu.tscn")
 
 
 ## 更新 > デバッグ.
@@ -423,4 +422,5 @@ func _update_debug():
 
 
 func _on_button_button_down():
+	PhysicsServer2D.set_active(true)
 	get_tree().change_scene_to_file("res://menu.tscn")
