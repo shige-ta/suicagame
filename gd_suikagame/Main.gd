@@ -330,26 +330,27 @@ func _update_ui(delta:float) -> void:
 	if max_id >= Fruit.eFruit.hiyoko:
 		if _bgm_id < 4:
 			# XBOXが出たらBGM変更.
-			_bgm.stream = load("res://assets/sound/bgm/bgm05_140.mp3")
+			_bgm.stream = load("res://assets/sound/bgm/bgm06_130.mp3")
+			# _bgm.stream = load("res://assets/sound/bgm/bgm05_140.mp3")
 			_bgm.play()
 			_bgm_id = 5
 	elif max_id >= Fruit.eFruit.small_hiyoko:
 		if _bgm_id < 3:
 			# プリンが出たらBGM変更.
-			_bgm.stream = load("res://assets/sound/bgm/bgm04_110.mp3")
-			_bgm.play()
+			# _bgm.stream = load("res://assets/sound/bgm/bgm04_110.mp3")
+			# _bgm.play()
 			_bgm_id = 3 
 	elif max_id >= Fruit.eFruit.c4:
 		if _bgm_id < 2:
 			# 牛乳が出たらBGM変更.
-			_bgm.stream = load("res://assets/sound/bgm/bgm03_140.mp3")
-			_bgm.play()
+			# _bgm.stream = load("res://assets/sound/bgm/bgm03_140.mp3")
+			# _bgm.play()
 			_bgm_id = 2
 	elif max_id >= Fruit.eFruit.c3:
 		if _bgm_id < 1:
 			# 5箱が出たらBGM変更.
-			_bgm.stream = load("res://assets/sound/bgm/bgm02_140.mp3")
-			_bgm.play()
+			# _bgm.stream = load("res://assets/sound/bgm/bgm02_140.mp3")
+			# _bgm.play()
 			_bgm_id = 1
 	
 	# 進化の輪の更新.

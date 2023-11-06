@@ -18,10 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://eseldrdv5mc3" path="res://assets/images/gauge_under.png" id="20_topfu"]
 [ext_resource type="Texture2D" uid="uid://1ng8l5na42f2" path="res://assets/images/gauge_progress.png" id="21_cfs7a"]
 [ext_resource type="Texture2D" uid="uid://b7kjd6w6grke5" path="res://assets/images/fruits/c3.png" id="21_hmlrq"]
-[ext_resource type="AudioStream" uid="uid://cg8lvc3psl6wr" path="res://assets/sound/bgm/bgm01_130.mp3" id="22_7yljx"]
 [ext_resource type="LabelSettings" uid="uid://hgpq80s0wk7j" path="res://assets/fonts/font_s.tres" id="22_b3ye2"]
 [ext_resource type="Texture2D" uid="uid://c7n7s78ibibel" path="res://assets/images/fruits/c4.png" id="22_cvy71"]
 [ext_resource type="Texture2D" uid="uid://dgu2ls50sh680" path="res://assets/images/fruits/hiyoko.png" id="23_crh7h"]
+[ext_resource type="AudioStream" uid="uid://casaw72u8yqvf" path="res://assets/sound/bgm/bgm06_130.mp3" id="23_psmb2"]
 [ext_resource type="Texture2D" uid="uid://dxi6uof8t6kno" path="res://assets/images/fruits/small_hiyoko.png" id="24_vj64h"]
 
 [node name="Main" type="Node2D"]
@@ -298,7 +298,7 @@ label_settings = ExtResource("6_la6a2")
 metadata/_edit_use_anchors_ = true
 
 [node name="Bgm" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("22_7yljx")
+stream = ExtResource("23_psmb2")
 bus = &"BGM"
 
 [node name="Button" type="Button" parent="."]
