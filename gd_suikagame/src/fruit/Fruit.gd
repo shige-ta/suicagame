@@ -80,6 +80,11 @@ const TEXTURES = {
 	eFruit.hiyoko: "res://assets/images/fruits/hiyoko.png",
 }
 
+
+const FRUIT_ORDER = [
+	eFruit.c1, eFruit.c2, eFruit.c3, eFruit.c4, eFruit.small_hiyoko,eFruit.hiyoko
+]
+
 # -----------------------------------------------
 # export.
 # -----------------------------------------------
@@ -187,27 +192,49 @@ func _on_body_entered(body: Node) -> void:
 		return # すでに破棄要求されている.
 	if body.is_queued_for_deletion():
 		return # すでに破棄要求されている.
-		
-	# フルーツとヒットした.
+
+	# フルーツとヒットした場合の処理
 	var other = body as Fruit
-	if id != other.id:
-		return # 一致していないので何も起こらない.
-	
-	# IDが一致していたら合成可能.
-	if id < eFruit.small_hiyoko:
-		# とりあえず中間地点にフルーツを生成する.
-		var pos = (position + other.position)/2
-		# このシグナル内で生成する場合は
-		# 遅延処理をしなければならない.
-		var is_deferred = true
-		# 進化するのでid+1
-		var fruit = Common.create_fruit(id+1, is_deferred, pos)
-		fruit.position = pos
-		fruit.start_scale()
-	else:
-		# XBox同士は消せない.
+
+	# 両方のフルーツのIDが一致しない場合、何もしない
+	if self.id != other.id:
 		return
-	
-	# お互いに消滅する.
+
+	var currentIndex = FRUIT_ORDER.find(self.id)
+	if currentIndex == -1 or currentIndex == FRUIT_ORDER.size() - 1:
+		return # 現在のフルーツがリストにない、または最後のフルーツの場合、何もしない
+
+	var nextFruitID = FRUIT_ORDER[currentIndex + 1]
+	var pos = (position + other.position) / 2
+	var is_deferred = true
+	var fruit = Common.create_fruit(nextFruitID, is_deferred, pos)
+	fruit.position = pos
+	fruit.start_scale()
+
+	# お互いに消滅する
 	queue_free()
 	other.queue_free()
+		
+	# # フルーツとヒットした.
+	# var other = body as Fruit
+	# if id != other.id:
+	# 	return # 一致していないので何も起こらない.
+	
+	# # IDが一致していたら合成可能.
+	# if id < eFruit.small_hiyoko:
+	# 	# とりあえず中間地点にフルーツを生成する.
+	# 	var pos = (position + other.position)/2
+	# 	# このシグナル内で生成する場合は
+	# 	# 遅延処理をしなければならない.
+	# 	var is_deferred = true
+	# 	# 進化するのでid+1
+	# 	var fruit = Common.create_fruit(id+1, is_deferred, pos)
+	# 	fruit.position = pos
+	# 	fruit.start_scale()
+	# else:
+	# 	# XBox同士は消せない.
+	# 	return
+	
+	# # お互いに消滅する.
+	# queue_free()
+	# other.queue_free()

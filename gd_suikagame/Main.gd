@@ -22,7 +22,7 @@ const NEXT_TBL = [
 	Fruit.eFruit.c3,
 	Fruit.eFruit.c4,
 	Fruit.eFruit.small_hiyoko,
-	Fruit.eFruit.hiyoko,
+#	Fruit.eFruit.hiyoko,
 ]
 
 ## 状態.

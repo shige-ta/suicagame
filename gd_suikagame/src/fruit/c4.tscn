@@ -2,12 +2,12 @@
 
 [ext_resource type="PhysicsMaterial" uid="uid://cx5k6fc767w7c" path="res://assets/fruit_physics_material.tres" id="1_c4"]
 [ext_resource type="Script" path="res://src/fruit/Fruit.gd" id="2_c4"]
-[ext_resource type="Texture2D" uid="uid://bx1r7gcf7ti4u" path="res://assets/images/fruits/c4.png" id="3_c4"]
+[ext_resource type="Texture2D" uid="uid://c7n7s78ibibel" path="res://assets/images/fruits/c4.png" id="3_c4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1_c4"]
 radius = 48.0
 
-[node name="Fruit5Box" type="RigidBody2D"]
+[node name="Fruit5Box2" type="RigidBody2D"]
 physics_material_override = ExtResource("1_c4")
 max_contacts_reported = 8
 contact_monitor = true
@@ -16,7 +16,6 @@ id = 3
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("3_c4")
-scale = Vector2(1.0, 1.0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1_c4")
