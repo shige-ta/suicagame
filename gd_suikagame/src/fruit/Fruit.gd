@@ -54,7 +54,7 @@ const NAMES = {
 	eFruit.c2: "c2",
 	eFruit.c3: "c3",
 	eFruit.c4: "c4",
-	eFruit.small_hiyoko: "small_hiyoko",
+	eFruit.small_hiyoko: "s_hiyoko",
 	eFruit.hiyoko: "hiyoko",
 }
 
