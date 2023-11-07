@@ -79,7 +79,7 @@ var _evolution_sprs = {}
 ## 進化の輪のスケール.
 var _evolution_scales = {}
 
-
+var is_button_pressed = false
 
 # -----------------------------------------------
 # private function.
@@ -154,6 +154,9 @@ func _input(event):
 
 ## 更新.
 func _process(delta: float) -> void:
+	if is_button_pressed:
+		is_button_pressed = false
+		return
 	# 状態に合わせた更新.
 	match _state:
 		eState.INIT:
@@ -426,11 +429,16 @@ func _update_debug():
 
 
 func _on_button_button_down():
+	# ボタンが押されたことを示すフラグを設定
+	is_button_pressed = true
+	
 	PhysicsServer2D.set_active(true)
 	get_tree().change_scene_to_file("res://menu.tscn")
 
 
 func _on_button_button2_down():
+	# ボタンが押されたことを示すフラグを設定
+	is_button_pressed = true
 	# すべてのフルーツをリストに取得
 	var fruits = _fruit_layer.get_children()
 
@@ -440,39 +448,30 @@ func _on_button_button2_down():
 		_explode_fruit(random_fruit, fruits)
 
 func _explode_fruit(fruit, all_fruits):
-	var _tween = get_tree().create_tween()
-	
-	# スプライトのスケーリング
-	# _tween.tween_property(fruit, "scale", fruit.scale * 6.0, 0.2)
-	
-	# スプライトのフェードアウト
-	# _tween.tween_property(fruit, "modulate:a", 0.0, 0.5)
-	
-	# Tweenのアニメーションを開始
-	# _tween.play()
+	# Create a Tween
+	var tween = get_tree().create_tween()
 
 	# Store the fruit's original state
 	var initial_scale = fruit.scale
 	var initial_position = fruit.position
 	var initial_rotation_degrees = fruit.rotation_degrees
 
-	# Set up random properties for the crazy motion
-	var random_scale = Vector2(randf_range(0.5, 1.5), randf_range(0.5, 1.5))
-	var random_position_offset = Vector2(randf_range(-10, 10), randf_range(-10, 10))
+	# 大げさな動作のためのランダムなプロパティを設定
+	var random_scale = Vector2(randf_range(2.0, 3.0), randf_range(2.0, 3.0))  # より大きなスケール
+	var random_position_offset := Vector2(randf_range(-200, 200), randf_range(-200, 200))  # より大きな位置の変動
 	var random_position = initial_position + random_position_offset
-	var random_rotation = randf_range(-180, 180)  # Using degrees for rotation
+	var random_rotation := randf_range(-720, 720)  # より大きな回転角度
 
-	# Start the fruit's crazy animation
-	# var tween = Tween.new()
-	add_child(_tween)
-	_tween.tween_property(fruit, "scale", random_scale, 0.3)
-	_tween.tween_property(fruit, "position", random_position, 0.3)
-	_tween.tween_property(fruit, "rotation_degrees", random_rotation, 0.3)
-	_tween.play()
+	# アニメーションの速度を速くする
+	var animation_duration := 0.1  # より短い時間
 
-	# After some time, return the fruit to its original state
-	await get_tree().create_timer(1.0).timeout  # Wait for 1 second
-	_tween.tween_property(fruit, "scale", initial_scale, 0.3)
-	_tween.tween_property(fruit, "position", initial_position, 0.3)
-	_tween.tween_property(fruit, "rotation_degrees", initial_rotation_degrees, 0.3)
-	_tween.play()
+	# フルーツのプロパティをランダムな値にアニメーション
+	tween.tween_property(fruit, "scale", random_scale, animation_duration)
+	tween.tween_property(fruit, "position", random_position, animation_duration)
+	tween.tween_property(fruit, "rotation_degrees", random_rotation, animation_duration)
+	
+	# Now set the easing and interpolation for each property separately
+	tween.set_ease(Tween.EASE_OUT_IN)  # イージングのタイプを設定
+	tween.set_trans(Tween.TRANS_QUAD)  # トランジションのタイプを設定
+	tween.play()
+	
