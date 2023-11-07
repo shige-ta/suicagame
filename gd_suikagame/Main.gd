@@ -88,8 +88,8 @@ var _evolution_scales = {}
 func _ready() -> void:
 	if not $Button.button_down.is_connected(_on_button_button_down):
 		$Button.button_down.connect(_on_button_button_down)	# レイヤーテーブル.
-	# if not $Button2.button_down.is_connected(_on_button_button2_down):
-		# $Button2.button_down.connect(_on_button_button2_down)	# レイヤーテーブル.
+	if not $Button2.button_down.is_connected(_on_button_button2_down):
+		$Button2.button_down.connect(_on_button_button2_down)	# レイヤーテーブル.
 		
 	var layers = {
 		"wall": _wall_layer,
@@ -430,25 +430,49 @@ func _on_button_button_down():
 	get_tree().change_scene_to_file("res://menu.tscn")
 
 
-# func _on_button_button2_down():
-# 	# すべてのフルーツをリストに取得
-# 	var fruits = _fruit_layer.get_children()
+func _on_button_button2_down():
+	# すべてのフルーツをリストに取得
+	var fruits = _fruit_layer.get_children()
 
-# 	# リストが空でなければランダムなフルーツを選ぶ
-# 	if fruits.size() > 0:
-# 		var random_fruit = fruits[randi() % fruits.size()]
-# 		_explode_fruit(random_fruit, fruits)
+	# リストが空でなければランダムなフルーツを選ぶ
+	if fruits.size() > 0:
+		var random_fruit = fruits[randi() % fruits.size()]
+		_explode_fruit(random_fruit, fruits)
 
-# func _explode_fruit(fruit, all_fruits):
-# 	var _tween = get_tree().create_tween()
+func _explode_fruit(fruit, all_fruits):
+	var _tween = get_tree().create_tween()
 	
-# 	# スプライトのスケーリング
-# 	_tween.tween_property(fruit, "scale", fruit.scale * 6.0, 0.2)
+	# スプライトのスケーリング
+	# _tween.tween_property(fruit, "scale", fruit.scale * 6.0, 0.2)
 	
-# 	# スプライトのフェードアウト
-# 	_tween.tween_property(fruit, "modulate:a", 0.0, 0.5)
+	# スプライトのフェードアウト
+	# _tween.tween_property(fruit, "modulate:a", 0.0, 0.5)
 	
-# 	# Tweenのアニメーションを開始
-# 	_tween.play()
+	# Tweenのアニメーションを開始
+	# _tween.play()
 
-	
+	# Store the fruit's original state
+	var initial_scale = fruit.scale
+	var initial_position = fruit.position
+	var initial_rotation_degrees = fruit.rotation_degrees
+
+	# Set up random properties for the crazy motion
+	var random_scale = Vector2(randf_range(0.5, 1.5), randf_range(0.5, 1.5))
+	var random_position_offset = Vector2(randf_range(-10, 10), randf_range(-10, 10))
+	var random_position = initial_position + random_position_offset
+	var random_rotation = randf_range(-180, 180)  # Using degrees for rotation
+
+	# Start the fruit's crazy animation
+	# var tween = Tween.new()
+	add_child(_tween)
+	_tween.tween_property(fruit, "scale", random_scale, 0.3)
+	_tween.tween_property(fruit, "position", random_position, 0.3)
+	_tween.tween_property(fruit, "rotation_degrees", random_rotation, 0.3)
+	_tween.play()
+
+	# After some time, return the fruit to its original state
+	await get_tree().create_timer(1.0).timeout  # Wait for 1 second
+	_tween.tween_property(fruit, "scale", initial_scale, 0.3)
+	_tween.tween_property(fruit, "position", initial_position, 0.3)
+	_tween.tween_property(fruit, "rotation_degrees", initial_rotation_degrees, 0.3)
+	_tween.play()
