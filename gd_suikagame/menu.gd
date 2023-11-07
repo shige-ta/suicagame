@@ -50,7 +50,7 @@ func _ready():
 		$Button.disabled = true
 	_on_load_interstitial_pressed()
 	$Window.hide()
-	$HTTPRequest.request("https://google.com")
+	$HTTPRequest.request("https://1.1.1.1")
 	$HTTPRequest.connect("request_completed", Callable(self, "_on_request_completed"))
 
 func _on_load_interstitial_pressed() -> void:
