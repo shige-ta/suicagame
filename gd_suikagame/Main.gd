@@ -437,7 +437,6 @@ func _on_button_button_down():
 
 
 func _on_button_button2_down():
-	# ボタンが押されたことを示すフラグを設定
 	is_button_pressed = true
 	# すべてのフルーツをリストに取得
 	var fruits = _fruit_layer.get_children()
@@ -475,3 +474,13 @@ func _explode_fruit(fruit, all_fruits):
 	tween.set_trans(Tween.TRANS_QUAD)  # トランジションのタイプを設定
 	tween.play()
 	
+	# フルーツのプロパティをランダムな値にアニメーション
+	tween.tween_property(fruit, "scale", initial_scale, animation_duration)
+	tween.tween_property(fruit, "position", initial_position, animation_duration)
+	tween.tween_property(fruit, "rotation_degrees", initial_rotation_degrees, animation_duration)
+	
+	# Now set the easing and interpolation for each property separately
+	tween.set_ease(Tween.EASE_OUT_IN)  # イージングのタイプを設定
+	tween.set_trans(Tween.TRANS_QUAD)  # トランジションのタイプを設定
+	tween.play()
+
