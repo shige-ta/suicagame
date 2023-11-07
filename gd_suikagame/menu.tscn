@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://orqeo64ndn6p"]
+[gd_scene load_steps=4 format=3 uid="uid://orqeo64ndn6p"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_uahsu"]
 [ext_resource type="FontFile" uid="uid://buyygjfri0u11" path="res://addons/admob/assets/fonts/orange_juice_2_0.ttf" id="2_fydr2"]
+[ext_resource type="Texture2D" uid="uid://b7kaadafx8ayf" path="res://assets/images/menu_back.png" id="3_lwwnh"]
 
 [node name="menu" type="Control"]
 layout_mode = 3
@@ -41,3 +42,9 @@ theme_override_constants/outline_size = 30
 theme_override_fonts/font = ExtResource("2_fydr2")
 theme_override_font_sizes/font_size = 100
 text = "ヒヨコのたぁ"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(577.5, 325.5)
+scale = Vector2(1.12598, 0.633789)
+texture = ExtResource("3_lwwnh")
