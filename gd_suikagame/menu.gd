@@ -50,7 +50,7 @@ func _ready():
 		$Button.disabled = true
 	_on_load_interstitial_pressed()
 	$Window.hide()
-	$HTTPRequest.request("https://1.1.1.1")
+	$HTTPRequest.request("https://google.com")
 	$HTTPRequest.connect("request_completed", Callable(self, "_on_request_completed"))
 
 func _on_load_interstitial_pressed() -> void:
@@ -103,6 +103,7 @@ func _on_button_button_down():
 	ad_view.hide()
 
 func show_popup():
+	$Button.disabled = true
 	$Window.title = "Network Error"
 	$Window.size = Vector2(500, 400)
 	$Window.position = Vector2(100, 100)
