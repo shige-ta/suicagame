@@ -88,6 +88,9 @@ var _evolution_scales = {}
 func _ready() -> void:
 	if not $Button.button_down.is_connected(_on_button_button_down):
 		$Button.button_down.connect(_on_button_button_down)	# レイヤーテーブル.
+	# if not $Button2.button_down.is_connected(_on_button_button2_down):
+		# $Button2.button_down.connect(_on_button_button2_down)	# レイヤーテーブル.
+		
 	var layers = {
 		"wall": _wall_layer,
 		"fruit": _fruit_layer,
@@ -425,3 +428,27 @@ func _update_debug():
 func _on_button_button_down():
 	PhysicsServer2D.set_active(true)
 	get_tree().change_scene_to_file("res://menu.tscn")
+
+
+# func _on_button_button2_down():
+# 	# すべてのフルーツをリストに取得
+# 	var fruits = _fruit_layer.get_children()
+
+# 	# リストが空でなければランダムなフルーツを選ぶ
+# 	if fruits.size() > 0:
+# 		var random_fruit = fruits[randi() % fruits.size()]
+# 		_explode_fruit(random_fruit, fruits)
+
+# func _explode_fruit(fruit, all_fruits):
+# 	var _tween = get_tree().create_tween()
+	
+# 	# スプライトのスケーリング
+# 	_tween.tween_property(fruit, "scale", fruit.scale * 6.0, 0.2)
+	
+# 	# スプライトのフェードアウト
+# 	_tween.tween_property(fruit, "modulate:a", 0.0, 0.5)
+	
+# 	# Tweenのアニメーションを開始
+# 	_tween.play()
+
+	
