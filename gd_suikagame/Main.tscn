@@ -217,7 +217,6 @@ offset_left = 512.0
 offset_top = 328.0
 offset_right = 640.0
 offset_bottom = 376.0
-text = "reset button pressed"
 label_settings = ExtResource("6_la6a2")
 horizontal_alignment = 1
 vertical_alignment = 1
