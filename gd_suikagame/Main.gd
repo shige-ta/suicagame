@@ -12,11 +12,6 @@ const DROP_POS_Y = 120.0
 
 ## NEXT抽選用テーブル.
 const NEXT_TBL = [
-#	Fruit.eFruit.BULLET, # 0:敵弾.
-#	Fruit.eFruit.CARROT, # 1:人参.
-#	Fruit.eFruit.RADISH, # 2:大根.
-#	Fruit.eFruit.POCKY, # 3:ポッキー.
-#	Fruit.eFruit.BANANA, # 4:バナナ.
 	Fruit.eFruit.c1,
 	Fruit.eFruit.c2,
 	Fruit.eFruit.c3,
@@ -108,18 +103,6 @@ func _ready() -> void:
 ## 進化画像のセットアップ.
 func _setup_evolution() -> void:
 	# 進化画像.
-#	_evolution_sprs[Fruit.eFruit.BULLET] = $UILayer/Evolution/Bullet
-#	_evolution_sprs[Fruit.eFruit.CARROT] = $UILayer/Evolution/Carrot
-#	_evolution_sprs[Fruit.eFruit.RADISH] = $UILayer/Evolution/Radish
-#	_evolution_sprs[Fruit.eFruit.POCKY] = $UILayer/Evolution/Pocky
-#	_evolution_sprs[Fruit.eFruit.BANANA] = $UILayer/Evolution/Banana
-#	_evolution_sprs[Fruit.eFruit.NASU] = $UILayer/Evolution/Nasu
-#	_evolution_sprs[Fruit.eFruit.TAKO] = $UILayer/Evolution/Tako
-#	_evolution_sprs[Fruit.eFruit.NYA] = $UILayer/Evolution/Nya
-#	_evolution_sprs[Fruit.eFruit.FIVE_BOX] = get_node("UILayer/Evolution/5Box")
-#	_evolution_sprs[Fruit.eFruit.MILK] = $UILayer/Evolution/Milk
-#	_evolution_sprs[Fruit.eFruit.PUDDING] = $UILayer/Evolution/Pudding
-#	_evolution_sprs[Fruit.eFruit.XBOX] = $UILayer/Evolution/Xbox
 	_evolution_sprs[Fruit.eFruit.c1] = $UILayer/Evolution/c1
 	_evolution_sprs[Fruit.eFruit.c2] = $UILayer/Evolution/c2
 	_evolution_sprs[Fruit.eFruit.c3] = $UILayer/Evolution/c3
@@ -157,6 +140,12 @@ func _process(delta: float) -> void:
 	if is_button_pressed:
 		is_button_pressed = false
 		return
+		
+	for fruit in _fruit_layer.get_children(): # "fruits"は全フルーツが属するグループ名
+		if fruit.has_meta("velocity"):
+			var velocity = fruit.get_meta("velocity")
+			fruit.position += velocity * delta
+
 	# 状態に合わせた更新.
 	match _state:
 		eState.INIT:
@@ -172,6 +161,30 @@ func _process(delta: float) -> void:
 	_update_ui(delta)
 	# デバッグの更新.
 	_update_debug()
+
+
+# 衝突の処理を疑似的に行う関数
+func check_collisions():
+	var fruits = _fruit_layer.get_children()
+	for i in range(fruits.size()):
+		for j in range(i + 1, fruits.size()):
+			var fruit1 = fruits[i]
+			var fruit2 = fruits[j]
+			# AABB 衝突判定（軸平行境界ボックス）
+			if fruit1.get_rect().intersects(fruit2.get_rect()):
+				# 衝突したら、ここで何か処理を行う
+				handle_collision(fruit1, fruit2)
+
+# 実際の衝突処理を行う関数
+func handle_collision(fruit1: Sprite2D, fruit2: Sprite2D):
+	# フルーツのメタデータから速度を取得
+	var velocity1 = fruit1.get_meta("velocity")
+	var velocity2 = fruit2.get_meta("velocity")
+	
+	# 簡易的な反射処理
+	fruit1.set_meta("velocity", velocity2)
+	fruit2.set_meta("velocity", velocity1)
+
 
 ## 更新 > 初期化.
 func _update_init() -> void:
@@ -446,6 +459,15 @@ func _on_button_button2_down():
 		var random_fruit = fruits[randi() % fruits.size()]
 		_explode_fruit(random_fruit, fruits)
 
+# フルーツを暴走させる関数
+func _explode_fruit(fruit, all_fruits):
+	# ランダムな方向と速度を生成
+	var direction = Vector2(randf() - 0.5, randf() - 0.5).normalized()
+	var speed = randf_range(50, 500) # 速度の範囲を設定
+	fruit.set_meta("velocity", direction * speed) # メタデータに速度を保存
+
+
+"""
 func _explode_fruit(fruit, all_fruits):
 	# Create a Tween
 	var tween = get_tree().create_tween()
@@ -483,4 +505,4 @@ func _explode_fruit(fruit, all_fruits):
 	tween.set_ease(Tween.EASE_OUT_IN)  # イージングのタイプを設定
 	tween.set_trans(Tween.TRANS_QUAD)  # トランジションのタイプを設定
 	tween.play()
-
+"""
