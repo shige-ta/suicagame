@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ma78kqfw7f7"]
+[gd_scene load_steps=23 format=3 uid="uid://ma78kqfw7f7"]
 
 [ext_resource type="PackedScene" uid="uid://bl0fa1266u1ui" path="res://src/Wall.tscn" id="1_oijm6"]
 [ext_resource type="Script" path="res://Main.gd" id="1_pv48b"]
@@ -21,7 +21,6 @@
 [ext_resource type="LabelSettings" uid="uid://hgpq80s0wk7j" path="res://assets/fonts/font_s.tres" id="22_b3ye2"]
 [ext_resource type="Texture2D" uid="uid://c7n7s78ibibel" path="res://assets/images/fruits/c4.png" id="22_cvy71"]
 [ext_resource type="Texture2D" uid="uid://dgu2ls50sh680" path="res://assets/images/fruits/hiyoko.png" id="23_crh7h"]
-[ext_resource type="AudioStream" uid="uid://casaw72u8yqvf" path="res://assets/sound/bgm/bgm06_130.mp3" id="23_psmb2"]
 [ext_resource type="Texture2D" uid="uid://dxi6uof8t6kno" path="res://assets/images/fruits/small_hiyoko.png" id="24_vj64h"]
 
 [node name="Main" type="Node2D"]
@@ -297,7 +296,6 @@ label_settings = ExtResource("6_la6a2")
 metadata/_edit_use_anchors_ = true
 
 [node name="Bgm" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("23_psmb2")
 bus = &"BGM"
 
 [node name="Button" type="Button" parent="."]

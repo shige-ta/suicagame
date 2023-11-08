@@ -75,12 +75,26 @@ var _evolution_sprs = {}
 var _evolution_scales = {}
 
 var is_button_pressed = false
-
+var mp3 = preload("res://assets/sound/bgm/bgm06_130.mp3")
+# Set the AudioStreamPlayer node's loop property to true
 # -----------------------------------------------
 # private function.
 # -----------------------------------------------
 ## 開始.
 func _ready() -> void:
+	mp3.loop = true
+	# Create an AudioStreamPlayer node
+	var player = AudioStreamPlayer.new()
+
+	# Set the AudioStreamPlayer node's stream property to the AudioStreamMP3 resource
+	player.stream = mp3
+
+
+	# Add the AudioStreamPlayer node to the scene
+	add_child(player)
+
+	# Play the MP3 file
+	player.play()
 	if not $Button.button_down.is_connected(_on_button_button_down):
 		$Button.button_down.connect(_on_button_button_down)	# レイヤーテーブル.
 	if not $Button2.button_down.is_connected(_on_button_button2_down):
