@@ -93,12 +93,12 @@ texture = ExtResource("23_crh7h")
 
 [node name="Pudding" type="Sprite2D" parent="UILayer/Evolution"]
 position = Vector2(24, 72)
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("24_vj64h")
 
 [node name="Milk" type="Sprite2D" parent="UILayer/Evolution"]
 position = Vector2(24, 120)
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("22_cvy71")
 
 [node name="5Box" type="Sprite2D" parent="UILayer/Evolution"]
