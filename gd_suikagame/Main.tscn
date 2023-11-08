@@ -292,7 +292,7 @@ offset_left = 48.0
 offset_top = 576.0
 offset_right = 176.0
 offset_bottom = 624.0
-text = "HI-SCORE: 0"
+text = "RECORD: 0"
 label_settings = ExtResource("6_la6a2")
 metadata/_edit_use_anchors_ = true
 

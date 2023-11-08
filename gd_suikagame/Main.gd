@@ -309,7 +309,7 @@ func _start_gameover() -> void:
 func _update_ui(delta:float) -> void:
 	# スコア更新.
 	_ui_score.text = "SCORE: %d"%Common.score
-	_ui_hi_score.text = "HI-SCORE: %d"%Common.hi_score
+	_ui_hi_score.text = "RECORD: %d"%Common.hi_score
 	
 	# 加算スコア.
 	if _count_score_particle() == 0:
