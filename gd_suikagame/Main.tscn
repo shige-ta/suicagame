@@ -308,6 +308,7 @@ offset_bottom = 614.0
 text = "RESET"
 
 [node name="Button2" type="Button" parent="."]
+visible = false
 offset_left = 54.0
 offset_top = 516.0
 offset_right = 207.0
