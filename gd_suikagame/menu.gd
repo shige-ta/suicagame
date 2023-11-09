@@ -27,6 +27,10 @@ func _ready():
 	$Button.disabled = true
 	$Button2.disabled = true
 	
+	$Button.visible = true
+	$Button.disabled = false
+
+
 	interstitial_ad_load_callback.on_ad_failed_to_load = on_interstitial_ad_failed_to_load
 	interstitial_ad_load_callback.on_ad_loaded = on_interstitial_ad_loaded
 	_on_load_pressed()	
@@ -299,6 +303,8 @@ func _on_load_pressed():
 	
 func on_interstitial_ad_failed_to_load(adError : LoadAdError) -> void:
 	print(adError.message)
+	$Button.visible = true
+	$Button.disabled = false
 	
 func on_interstitial_ad_loaded(interstitial_ad : InterstitialAd) -> void:
 	print("interstitial ad loaded" + str(interstitial_ad._uid))

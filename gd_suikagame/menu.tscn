@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://orqeo64ndn6p"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_uahsu"]
-[ext_resource type="FontFile" uid="uid://buyygjfri0u11" path="res://addons/admob/assets/fonts/orange_juice_2_0.ttf" id="2_fydr2"]
+[ext_resource type="FontFile" uid="uid://bvklpmc033uv5" path="res://assets/fonts/x12y12pxMaruMinya.ttf" id="2_a6s1m"]
 [ext_resource type="Texture2D" uid="uid://b7kaadafx8ayf" path="res://assets/images/menu_back.png" id="3_lwwnh"]
 
 [node name="menu" type="Control"]
@@ -18,6 +18,8 @@ offset_left = 403.0
 offset_top = 291.0
 offset_right = 742.0
 offset_bottom = 354.0
+theme_override_fonts/font = ExtResource("2_a6s1m")
+theme_override_font_sizes/font_size = 27
 text = "START"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
@@ -31,17 +33,18 @@ offset_bottom = 23.0
 position = Vector2i(0, 36)
 
 [node name="Label2" type="Label" parent="."]
+use_parent_material = true
 layout_mode = 0
-offset_left = 345.0
-offset_top = 77.0
-offset_right = 834.0
-offset_bottom = 214.0
+offset_left = 295.0
+offset_top = 94.0
+offset_right = 895.0
+offset_bottom = 231.0
 theme_override_colors/font_color = Color(0.94902, 0.901961, 0.337255, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.188235, 0.180392, 0.243137, 1)
 theme_override_constants/outline_size = 30
-theme_override_fonts/font = ExtResource("2_fydr2")
-theme_override_font_sizes/font_size = 100
+theme_override_fonts/font = ExtResource("2_a6s1m")
+theme_override_font_sizes/font_size = 90
 text = "ヒヨコのたぁ"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -56,4 +59,6 @@ offset_left = 406.0
 offset_top = 388.0
 offset_right = 738.0
 offset_bottom = 445.0
+theme_override_fonts/font = ExtResource("2_a6s1m")
+theme_override_font_sizes/font_size = 27
 text = "Support Us"
