@@ -76,6 +76,7 @@ var _evolution_scales = {}
 
 var is_button_pressed = false
 var mp3 = preload("res://assets/sound/bgm/bgm06_130.mp3")
+var player = AudioStreamPlayer.new()
 # Set the AudioStreamPlayer node's loop property to true
 # -----------------------------------------------
 # private function.
@@ -84,7 +85,6 @@ var mp3 = preload("res://assets/sound/bgm/bgm06_130.mp3")
 func _ready() -> void:
 	mp3.loop = true
 	# Create an AudioStreamPlayer node
-	var player = AudioStreamPlayer.new()
 
 	# Set the AudioStreamPlayer node's stream property to the AudioStreamMP3 resource
 	player.stream = mp3
@@ -305,7 +305,7 @@ func _is_gameoveer(delta:float) -> bool:
 ## ゲームオーバー開始処理.
 func _start_gameover() -> void:
 	# BGMを止める.
-	#_bgm.stop()
+	player.stop()
 	# 物理挙動を止める.
 	PhysicsServer2D.set_active(false)
 	for obj in _fruit_layer.get_children():
@@ -317,7 +317,7 @@ func _start_gameover() -> void:
 	# カーソルを非表示.
 	_spr_line.visible = false
 	_ui_now_fruit.visible = false
-
+	
 
 ## 更新 > UI.
 func _update_ui(delta:float) -> void:
@@ -363,9 +363,9 @@ func _update_ui(delta:float) -> void:
 	if max_id >= Fruit.eFruit.hiyoko:
 		if _bgm_id < 4:
 			# XBOXが出たらBGM変更.
-			_bgm.stream = load("res://assets/sound/bgm/bgm06_130.mp3")
+			#_bgm.stream = load("res://assets/sound/bgm/bgm06_130.mp3")
 			# _bgm.stream = load("res://assets/sound/bgm/bgm05_140.mp3")
-			_bgm.play()
+			#_bgm.play()
 			_bgm_id = 5
 	elif max_id >= Fruit.eFruit.small_hiyoko:
 		if _bgm_id < 3:
@@ -456,9 +456,7 @@ func _update_debug():
 
 
 func _on_button_button_down():
-	# ボタンが押されたことを示すフラグを設定
-	is_button_pressed = true
-	
+	# 物理を有効に戻す.
 	PhysicsServer2D.set_active(true)
 	get_tree().change_scene_to_file("res://menu.tscn")
 

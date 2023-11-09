@@ -2,12 +2,14 @@ extends Control
 
 var ad_view : AdView
 var ad_listener := AdListener.new()
-var adPosition := AdPosition.Values.TOP
-
+var adPosition := AdPosition.Values.BOTTOM
 var rewarded_ad : RewardedAd
 var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
 var rewarded_ad_load_callback := RewardedAdLoadCallback.new()
 var full_screen_content_callback := FullScreenContentCallback.new()
+
+var interstitial_ad : InterstitialAd
+var interstitial_ad_load_callback := InterstitialAdLoadCallback.new()
 
 func popup_show() -> void:
 	# ポップアップを表示する
@@ -20,6 +22,15 @@ func popup_show() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Button.visible = false
+	$Button2.visible = false
+	$Button.disabled = true
+	$Button2.disabled = true
+	
+	interstitial_ad_load_callback.on_ad_failed_to_load = on_interstitial_ad_failed_to_load
+	interstitial_ad_load_callback.on_ad_loaded = on_interstitial_ad_loaded
+	_on_load_pressed()	
+
 	ad_listener.on_ad_failed_to_load = _on_ad_failed_to_load
 	ad_listener.on_ad_clicked = _on_ad_clicked
 	ad_listener.on_ad_closed = _on_ad_closed
@@ -27,31 +38,54 @@ func _ready():
 	ad_listener.on_ad_loaded = _on_ad_loaded
 	ad_listener.on_ad_opened = _on_ad_opened
 	_on_load_banner_pressed()
-
-	on_user_earned_reward_listener.on_user_earned_reward = on_user_earned_reward
 	
 	rewarded_ad_load_callback.on_ad_failed_to_load = on_rewarded_ad_failed_to_load
 	rewarded_ad_load_callback.on_ad_loaded = on_rewarded_ad_loaded
 
+	_on_load_interstitial_pressed()
+
 	full_screen_content_callback.on_ad_clicked = func() -> void:
-		print("on_ad_clicked")
+		pass#		print("on_ad_clicked")
 	full_screen_content_callback.on_ad_dismissed_full_screen_content = func() -> void:
-		print("on_ad_dismissed_full_screen_content")
-		destroy()
+		pass#		print("on_ad_dismissed_full_screen_content")
 		
 	full_screen_content_callback.on_ad_failed_to_show_full_screen_content = func(ad_error : AdError) -> void:
-		print("on_ad_failed_to_show_full_screen_content")
+		pass#		print("on_ad_failed_to_show_full_screen_content")
 	full_screen_content_callback.on_ad_impression = func() -> void:
-		print("on_ad_impression")
+		pass#		print("on_ad_impression")
 	full_screen_content_callback.on_ad_showed_full_screen_content = func() -> void:
-		print("on_ad_showed_full_screen_content")
+		pass#		print("on_ad_showed_full_screen_content")
+
+	on_user_earned_reward_listener.on_user_earned_reward = on_user_earned_reward
+
+	
+	full_screen_content_callback.on_ad_clicked = func() -> void:
+		pass#		print("on_ad_clicked")
+	full_screen_content_callback.on_ad_dismissed_full_screen_content = func() -> void:
+		pass#		print("on_ad_dismissed_full_screen_content")
+		
+	full_screen_content_callback.on_ad_failed_to_show_full_screen_content = func(ad_error : AdError) -> void:
+		pass#print("on_ad_failed_to_show_full_screen_content")
+	full_screen_content_callback.on_ad_impression = func() -> void:
+		pass#print("on_ad_impression")
+	full_screen_content_callback.on_ad_showed_full_screen_content = func() -> void:
+		pass#		print("on_ad_showed_full_screen_content")
+
+
 	if not $Button.button_down.is_connected(_on_button_button_down):
 		$Button.button_down.connect(_on_button_button_down)
-		$Button.disabled = true
-	_on_load_interstitial_pressed()
+#		$Button.disabled = true
+	if not $Button2.button_down.is_connected(_on_button2_button_down):
+		$Button2.button_down.connect(_on_button2_button_down)
+#		$Button.disabled = true
+
+
 	$Window.hide()
 	$HTTPRequest.request("https://google.com")
 	$HTTPRequest.connect("request_completed", Callable(self, "_on_request_completed"))
+		
+
+
 
 func _on_load_interstitial_pressed() -> void:
 	var unit_id : String
@@ -59,8 +93,8 @@ func _on_load_interstitial_pressed() -> void:
 		unit_id = "ca-app-pub-3940256099942544/5224354917"
 	elif OS.get_name() == "iOS":
 		unit_id = "ca-app-pub-3940256099942544/1712485313"
-	else:
-		$Button.disabled = false
+#	else:
+#		$Button.disabled = false
 	RewardedAdLoader.new().load(unit_id, AdRequest.new(), rewarded_ad_load_callback)
 func on_rewarded_ad_failed_to_load(adError : LoadAdError) -> void:
 	print(adError.message)
@@ -75,15 +109,16 @@ func on_rewarded_ad_loaded(rewarded_ad : RewardedAd) -> void:
 	rewarded_ad.set_server_side_verification_options(server_side_verification_options)
 
 	self.rewarded_ad = rewarded_ad
-	_on_show_pressed()
+	$Button2.visible = true
+	$Button2.disabled = false  # この行がある場合
 
 func _on_show_pressed():
-	if rewarded_ad:
+	if self.rewarded_ad:
 		rewarded_ad.show(on_user_earned_reward_listener)
 
 func on_user_earned_reward(rewarded_item : RewardedItem):
 	print("on_user_earned_reward, rewarded_item: rewarded", rewarded_item.amount, rewarded_item.type)
-	$Button.disabled = false
+#	$Button.disabled = false
 
 func _on_video_completed():
 	pass
@@ -91,16 +126,34 @@ func _on_video_completed():
 # func _process(delta):
 # 	pass
 func _on_destroy_pressed():
-	destroy()
+	_on_ad_closed()
 
-func destroy():
+func _on_ad_closed():
+	if interstitial_ad:
+		# 広告が閉じた後の処理をここに書く
+		get_tree().change_scene_to_file("res://Main.tscn")
 	if rewarded_ad:
 		rewarded_ad.destroy()
 		rewarded_ad = null #need to load again
 
+func _on_interstitial_ad_show_pressed():
+	if interstitial_ad:
+		# 広告が閉じられた時に呼び出されるコールバックを設定
+		interstitial_ad.show()
+
+# start
 func _on_button_button_down():
-	get_tree().change_scene_to_file("res://Main.tscn")
+	_on_interstitial_ad_show_pressed()
 	ad_view.hide()
+	get_tree().change_scene_to_file("res://Main.tscn")
+
+#reward
+func _on_button2_button_down():
+	$Button2.visible = false  # この行がある場合
+	$Button2.disabled = true  # この行がある場合
+	_on_show_pressed()
+	_on_load_interstitial_pressed()
+
 
 func show_popup():
 	$Button.disabled = true
@@ -132,14 +185,14 @@ func _on_request_completed(result, response_code, headers, body):
 var time_since_last_ad = 0.0
 
 
-func _process(delta):
+#func _process(delta):
 	
-	time_since_last_ad += delta
+#	time_since_last_ad += delta
 	
-	if time_since_last_ad >= 5.0:
-		$Button.disabled = true
-		_on_load_interstitial_pressed()
-		time_since_last_ad = 0.0
+#	if time_since_last_ad >= 10.0:
+#		$Button.disabled = true
+#		_on_load_interstitial_pressed()
+#		time_since_last_ad = 0.0
 
 	
 	
@@ -196,9 +249,6 @@ func _on_ad_failed_to_load(load_ad_error : LoadAdError) -> void:
 func _on_ad_clicked() -> void:
 	print("_on_ad_clicked")
 	
-func _on_ad_closed() -> void:
-	print("_on_ad_closed")
-	
 func _on_ad_impression() -> void:
 	print("_on_ad_impression")
 	
@@ -243,3 +293,18 @@ func _on_bottom_right_pressed():
 
 func _on_center_pressed():
 	adPosition = AdPosition.Values.CENTER
+
+func _on_load_pressed():
+	InterstitialAdLoader.new().load("ca-app-pub-3940256099942544/1033173712", AdRequest.new(), interstitial_ad_load_callback)
+	
+func on_interstitial_ad_failed_to_load(adError : LoadAdError) -> void:
+	print(adError.message)
+	
+func on_interstitial_ad_loaded(interstitial_ad : InterstitialAd) -> void:
+	print("interstitial ad loaded" + str(interstitial_ad._uid))
+	interstitial_ad.full_screen_content_callback = full_screen_content_callback
+	self.interstitial_ad = interstitial_ad
+	# 広告がロードされたら、スタートボタンを有効にします。
+	$Button.visible = true
+	$Button.disabled = false  # この行がある場合
+	

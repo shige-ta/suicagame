@@ -299,6 +299,7 @@ metadata/_edit_use_anchors_ = true
 bus = &"BGM"
 
 [node name="Button" type="Button" parent="."]
+light_mask = 0
 offset_left = 885.0
 offset_top = 543.0
 offset_right = 1092.0
@@ -312,3 +313,5 @@ offset_top = 516.0
 offset_right = 207.0
 offset_bottom = 566.0
 text = "ＢＯＭＢ"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

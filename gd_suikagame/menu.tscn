@@ -15,9 +15,9 @@ script = ExtResource("1_uahsu")
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 403.0
-offset_top = 407.0
+offset_top = 291.0
 offset_right = 742.0
-offset_bottom = 470.0
+offset_bottom = 354.0
 text = "START"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
@@ -33,9 +33,9 @@ position = Vector2i(0, 36)
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0
 offset_left = 345.0
-offset_top = 187.0
+offset_top = 77.0
 offset_right = 834.0
-offset_bottom = 324.0
+offset_bottom = 214.0
 theme_override_colors/font_color = Color(0.94902, 0.901961, 0.337255, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.188235, 0.180392, 0.243137, 1)
@@ -49,3 +49,11 @@ show_behind_parent = true
 position = Vector2(577.5, 325.5)
 scale = Vector2(1.12598, 0.633789)
 texture = ExtResource("3_lwwnh")
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 406.0
+offset_top = 388.0
+offset_right = 738.0
+offset_bottom = 445.0
+text = "Support Us"
